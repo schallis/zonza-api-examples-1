@@ -6,8 +6,8 @@ import sys
 
 from pprint import pprint
 
-SITE = 'deluxe.zonza.tv'
-USER = 'deluxeuser@deluxe.com'
+SITE = 'demo.zonza.tv'
+USER = 'demo@demo.com'
 
 url = 'http://api.zonza.tv:8080/v0/'
 

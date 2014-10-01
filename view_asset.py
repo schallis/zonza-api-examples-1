@@ -6,7 +6,7 @@ import sys
 
 from pprint import pprint
 
-ITEM = 'VX-285057'
+ITEM = 'VX-101'
 
 url = 'http://api.zonza.tv:8080/v0/'
 

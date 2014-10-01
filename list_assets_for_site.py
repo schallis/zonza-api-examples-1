@@ -8,7 +8,7 @@ from pprint import pprint
 """
 Prints out the number of hits for a site and the first 10
 """
-SITE = 'jnj.zonza.tv'
+SITE = 'demo.zonza.tv'
 
 
 url = 'http://api.zonza.tv:8080/v0/'

@@ -6,6 +6,11 @@ import sys
 
 from pprint import pprint
 
+PAGE_SIZE = 100
+SITE = 'demo.zonza.tv'
+FIELD = 'demo_brand'
+OLD = 'old'
+NEW = 'new'
 
 url = 'http://api.zonza.tv:8080/v0/'
 
@@ -22,29 +27,22 @@ print 'searching...'
 headers = {'content-type': 'application/json'}
 headers.update(auth)
 
-PAGE_SIZE = 100
-SITE = 'fox.zonza.tv'
-FIELD = 'fox_brand'
-OLD = '4094'
-NEW = 'LETS BE COPS'
-
 items = []
 hits = 0
 page = 1
 pages = 2
 while page < pages:
-    print "Updating", page
     response = requests.get(
         '{}item?zonza_site={}&{}={}&__page={}&__page_size={}'.format(
             url, SITE, FIELD, OLD, page, PAGE_SIZE),
         headers=headers)
     json_response = json.loads(response.content)
-    print pprint(json_response)
     hits = int(json_response['hits'])
     pages = 1 + (hits // PAGE_SIZE)
     items.extend(json_response['item'])
 
-print hits
+print "About to update", hits, "asset(s)..."
+print "'{}' will be updated to '{}' for field '{}'".format(OLD, NEW, FIELD)
 
 
 # Update after retieving all items to avoid modifying the paginated results
