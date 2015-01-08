@@ -1,3 +1,10 @@
+========================
+Zonza Public API Scripts
+========================
+
+This repository contains scripts that utilise the ZONZA public API and can be
+used to automate common tasks or interact with third-party systems.
+
 Usage
 =====
 Set your API credentials into environment variables `BORK_USERNAME` and
@@ -5,5 +12,5 @@ Set your API credentials into environment variables `BORK_USERNAME` and
 
 WARNING:
 ========
-Do not run these scripts without looking at them first. They may inadvertantly
-contain/modify client data if you have access to it.
+Do not run these scripts without looking at them first. They are primarily for
+learning purposes and should be modified for particular use cases.
