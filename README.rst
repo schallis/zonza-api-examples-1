@@ -1,6 +1,6 @@
-========================
-Zonza Public API Scripts
-========================
+==================
+Zonza API Examples
+==================
 
 This repository contains scripts that utilise the ZONZA public API and can be
 used to automate common tasks or interact with third-party systems.
