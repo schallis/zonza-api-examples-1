@@ -6,8 +6,6 @@ import sys
 
 from pprint import pprint
 
-ITEM = 'VX-336639'
-
 url = 'http://api.zonza.tv:8080/v0/'
 
 def raise_invalid():
@@ -19,11 +17,14 @@ auth = {
     'Bork-Username': os.environ.get("BORK_USERNAME") or raise_invalid(),
 }
 
+item = sys.argv[1]
+if not item.startswith('VX-'):
+    raise Exception('No VX ID specified')
 print 'searching...'
 headers = {'content-type': 'application/json'}
 headers.update(auth)
 response = requests.get(
-    '{}item/{}'.format(url, ITEM),
+    '{}item/{}'.format(url, item),
     headers=headers)
 json_response = json.loads(response.content)
 print pprint(json_response)
