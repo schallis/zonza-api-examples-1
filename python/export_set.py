@@ -6,15 +6,16 @@ import sys
 
 from pprint import pprint
 
-SET_ID = 'VX-123'
 EXPORT_SHAPE = 'original'
-FTP_LOCATION = 'ftp://username:password@ftpserver:21/path/'
+
+# 'ftp://username:password@ftpserver:21/path/'
+FTP_LOCATION = os.environ.get("FTP_LOCATION") or raise_invalid(),
 
 url = 'http://api.zonza.tv:8080/v0/'
 
 def raise_invalid():
-    raise RuntimeError('Credentials not configured. Please set ' \
-                       'env variables BORK_TOKEN and BORK_USERNAME')
+    raise RuntimeError('Environment not configured. Please set ' \
+                       'env variables BORK_TOKEN and BORK_USERNAME etc.')
 
 auth = {
     'Bork-Token': os.environ.get("BORK_TOKEN") or raise_invalid(),
@@ -25,7 +26,7 @@ def get_set_items(vx_id):
     headers = {'content-type': 'application/json'}
     headers.update(auth)
     response = requests.get(
-        '{}collection/{}/item'.format(url, vx_id),
+        '{}collection/{}/item?__page=2'.format(url, vx_id),
         headers=headers)
     json_response = json.loads(response.content)
     return [item['id'] for item in json_response['item']]
@@ -42,5 +43,13 @@ def export(vx_id):
     json_response = json.loads(response.content)
     print pprint(json_response)
 
-for item_id in get_set_items(SET_ID):
-    export(item_id)
+set_id = sys.argv[1]
+if not set_id.startswith('VX-'):
+    raise Exception('No VX ID specified')
+
+all_items = get_set_items(set_id)
+print len(all_items)
+
+#for item_id in all_items:
+    #export(item_id)
+
